@@ -2,29 +2,31 @@ package com.flyzebra.virtuallte;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.zebra.VirtualLTEManager;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("native-lib");
-    }
-
+    private Switch vlte_switch;
+    private VirtualLTEManager virtualLTEManager;
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Example of a call to a native method
-        TextView tv = findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());
+        virtualLTEManager = (VirtualLTEManager) getSystemService("virtuallte");
+        vlte_switch = findViewById(R.id.vlte_switch);
+        vlte_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    virtualLTEManager.openVirtualLTE();
+                }else{
+                    virtualLTEManager.closeVirtualLTE();
+                }
+            }
+        });
     }
-
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-    public native String stringFromJNI();
 }
