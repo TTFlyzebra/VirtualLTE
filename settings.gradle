@@ -1,2 +1,2 @@
-include ':app'
+include ':virtualltedemo', ':virtualservice'
 rootProject.name='VirtualLTE'
