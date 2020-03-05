@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.RemoteException;
 import android.zebra.FlyLog;
 import android.zebra.IVirtualLTEService;
+import android.zebra.VlteLanInfo;
 
 /**
  * @hide
@@ -18,6 +19,12 @@ public class VirtualLTEService extends IVirtualLTEService.Stub implements IVlteR
         vlteSocketTask = new VlteSocketTask(context);
         vlteSocketTask.register(this);
         vlteSocketTask.start();
+    }
+
+    public void setVirtualLTEInfo(String vlteLanInfoStr) throws RemoteException
+    {
+        VlteLanInfo vlteLanInfo = VlteLanInfo.createByJson(vlteLanInfoStr);
+        vlteSocketTask.sendMessage("vlteLanInfo");
     }
 
     public void closeVirtualLTE() throws RemoteException

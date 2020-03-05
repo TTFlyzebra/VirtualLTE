@@ -16,11 +16,13 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="WIFI名称：" />
+            android:text="SSID：" />
 
         <EditText
+            android:id="@+id/wifissid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="HiWifi_4697BA"/>
     </LinearLayout>
 
     <LinearLayout
@@ -33,11 +35,37 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="WIFI密码：" />
+            android:text="PASSWORD：" />
 
         <EditText
+            android:id="@+id/wifipsk"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="0755667788"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="IP：" />
+
+        <EditText
+            android:id="@+id/ipAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="192.168.2.188"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,11 +78,32 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="网关：" />
+            android:text="MASK：" />
 
         <EditText
+            android:id="@+id/ipMask"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="255.255.255.0"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="GATEWAY：" />
+
+        <EditText
+            android:id="@+id/gateway"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="192.168.2.1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -70,8 +119,10 @@
             android:text="DNS1：" />
 
         <EditText
+            android:id="@+id/dns1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="192.168.2.1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -87,10 +138,10 @@
             android:text="DNS2：" />
 
         <EditText
+            android:id="@+id/dns2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -8,6 +8,15 @@ public class VirtualLTEManager
 {
     private static final String TAG = "VirtualLTEManager";
 
+    public void setVirtualLTEInfo(VlteLanInfo vlteLanInfo)
+    {
+        try {
+            mService.setVirtualLTEInfo(vlteLanInfo.toJsonString());
+        } catch (RemoteException e) {
+            FlyLog.e("openVirtualLTE error!");
+        }
+    }
+
     public void openVirtualLTE() {
         try {
             mService.openVirtualLTE();

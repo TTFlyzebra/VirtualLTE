@@ -1,6 +1,10 @@
 package android.zebra;
 
 interface IVirtualLTEService {
-	void closeVirtualLTE();
+
+    void setVirtualLTEInfo(String vlteLanInfo);
+
 	void openVirtualLTE();
+
+	void closeVirtualLTE();
 }
