@@ -38,6 +38,14 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -47,6 +55,14 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -56,6 +72,14 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -67,6 +91,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1px"
@@ -75,14 +100,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <Switch
             android:id="@+id/vlte_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="开关:" />
+            android:text="虚拟开关:" />
     </LinearLayout>
 
 </LinearLayout>
