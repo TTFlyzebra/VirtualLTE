@@ -8,7 +8,6 @@ import android.os.Looper;
 import android.os.SystemClock;
 import android.zebra.FlyLog;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
+ * @hide
  * ClassName: VlteSocketTask
  * Description:
  * Author: FlyZebra

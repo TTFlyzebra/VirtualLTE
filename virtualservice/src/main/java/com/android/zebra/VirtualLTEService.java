@@ -23,7 +23,7 @@ public class VirtualLTEService extends IVirtualLTEService.Stub implements IVlteR
 
     public void setVirtualLTEInfo(String vlteLanInfoStr) throws RemoteException
     {
-        VlteLanInfo vlteLanInfo = VlteLanInfo.createByJson(vlteLanInfoStr);
+        VlteLanInfo vlteLanInfo = VlteLanInfo.createByJsonString(vlteLanInfoStr);
         vlteSocketTask.sendMessage("vlteLanInfo");
     }
 
