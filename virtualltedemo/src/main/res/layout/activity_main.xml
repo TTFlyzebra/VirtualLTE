@@ -164,7 +164,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="NOTE:原则上网络Framework层network由rilj自动对应接口建立，此选项仅用于测试。" />
+            android:text="NOTE:原则上Framework层network由rilj自动对应接口建立，此选项仅用于测试。" />
     </LinearLayout>
 
     <LinearLayout

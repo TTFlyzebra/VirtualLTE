@@ -17,6 +17,7 @@ public class VirtualLTEManager
             SystemPropTools.set("persist.sys.vlte.gateway",vlteLanInfo.gateway);
             SystemPropTools.set("persist.sys.vlte.dns1",vlteLanInfo.dns1);
             SystemPropTools.set("persist.sys.vlte.dns2",vlteLanInfo.dns2);
+            SystemPropTools.set("persist.sys.vlte.netid",vlteLanInfo.network+"");
             mService.setVirtualLTEInfo(vlteLanInfo.toJsonString());
         } catch (RemoteException e) {
             FlyLog.e("openVirtualLTE error!");

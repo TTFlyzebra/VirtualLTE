@@ -41,6 +41,9 @@ public class VlteLanInfo {
             if(jsonObject.has("dns2")){
                 vlteLanInfo.dns2 = jsonObject.getString("dns2");
             }
+            if(jsonObject.has("network")){
+                vlteLanInfo.network = jsonObject.getInt("network");
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -55,6 +58,7 @@ public class VlteLanInfo {
                 "\"ipMask\":\""+ipMask+"\","+
                 "\"gateway\":\""+gateway+"\","+
                 "\"dns1\":\""+dns1+"\","+
-                "\"dns2\":\""+dns2+"\"}";
+                "\"dns2\":\""+dns2+"\","+
+                "\"network\":"+network+"}";
     }
 }
