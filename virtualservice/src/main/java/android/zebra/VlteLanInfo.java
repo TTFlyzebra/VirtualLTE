@@ -14,6 +14,7 @@ public class VlteLanInfo {
     public String gateway = "";
     public String dns1 = "";
     public String dns2 = "";
+    public int network = 0;
     public static VlteLanInfo createByJsonString(String json){
         if(TextUtils.isEmpty(json)) return null;
         VlteLanInfo vlteLanInfo = new VlteLanInfo();

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.net.DhcpInfo;
 import android.os.Bundle;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Switch vlte_switch;
     private VirtualLTEManager virtualLTEManager;
     private EditText wifissid, wifipsk, ipAddress, ipMask, gateway, dns1, dns2;
+    private CheckBox network;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         gateway = findViewById(R.id.gateway);
         dns1 = findViewById(R.id.dns1);
         dns2 = findViewById(R.id.dns2);
+        network = findViewById(R.id.network);
 
         vlte_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -40,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
                     vlteLanInfo.wifipsk = wifipsk.getText().toString();
                     vlteLanInfo.ipAddress = ipAddress.getText().toString();
                     vlteLanInfo.ipMask = ipMask.getText().toString();
-                    vlteLanInfo.gateway = ipMask.getText().toString();
+                    vlteLanInfo.gateway = gateway.getText().toString();
                     vlteLanInfo.dns1 = dns1.getText().toString();
                     vlteLanInfo.dns2 = dns2.getText().toString();
+                    vlteLanInfo.network = network.isChecked()?1:0;
                     virtualLTEManager.setVirtualLTEInfo(vlteLanInfo);
                     virtualLTEManager.openVirtualLTE();
                 } else {
