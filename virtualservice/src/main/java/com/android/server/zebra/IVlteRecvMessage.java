@@ -1,4 +1,4 @@
-package com.android.zebra;
+package com.android.server.zebra;
 
 /**
  * @hide
