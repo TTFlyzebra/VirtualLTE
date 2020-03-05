@@ -28,7 +28,7 @@ public class VirtualLTEService extends IVirtualLTEService.Stub implements IVlteR
 
     public void openVirtualLTE() throws RemoteException
     {
-        vlteSocketTask.sendMessage("openvlte");
+        vlteSocketTask.sendMessage("openvlte#");
         openVLTE_native();
     }
 

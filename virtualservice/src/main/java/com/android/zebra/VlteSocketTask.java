@@ -140,8 +140,9 @@ public class VlteSocketTask implements Runnable {
         }
     }
 
-    public boolean sendMessage(final String message) {
+    public boolean sendMessage(String message) {
         FlyLog.d("send:" + message);
+        final String sendMessage = "[{"+message+"}]";
         synchronized (mDaemonLock) {
             if (mOutputStream == null) {
                 FlyLog.e("ratd socket error! mOutputStream = null");
