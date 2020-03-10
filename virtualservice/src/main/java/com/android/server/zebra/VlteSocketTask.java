@@ -105,10 +105,10 @@ public class VlteSocketTask implements Runnable {
                         String retStr = tempStr.substring(0, start + 2);
                         tempStr = tempStr.substring(start + 2);
                         notifyRecvMessage(retStr);
-                        FlyLog.d("recv mpc:" + retStr);
+                        FlyLog.d("recv:" + retStr);
                     } else {
                         notifyRecvMessage(tempStr);
-                        FlyLog.d("recv mpc:" + tempStr);
+                        FlyLog.d("recv:" + tempStr);
                         break;
                     }
                 } while (start == -1);

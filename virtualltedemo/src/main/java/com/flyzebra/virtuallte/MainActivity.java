@@ -3,7 +3,6 @@ package com.flyzebra.virtuallte;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.net.DhcpInfo;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
