@@ -149,7 +149,7 @@ public class VlteSocketTask implements Runnable {
                 return false;
             } else {
                 try {
-                    mOutputStream.write(message.getBytes(StandardCharsets.UTF_8));
+                    mOutputStream.write(sendMessage.getBytes(StandardCharsets.UTF_8));
                 } catch (IOException e) {
                     FlyLog.d(e.toString());
                     return false;
