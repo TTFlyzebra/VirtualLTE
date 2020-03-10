@@ -26,13 +26,24 @@ public class VirtualLTEService extends IVirtualLTEService.Stub implements IVlteR
 
     public void setVirtualLTEInfo(String vlteLanInfoStr) throws RemoteException
     {
-        VlteLanInfo vlteLanInfo = VlteLanInfo.createByJsonString(vlteLanInfoStr);
-        vlteSocketTask.sendMessage("vlteLanInfo");
+        vlteSocketTask.sendMessage("setvltelan"+vlteLanInfoStr);
     }
 
+    @Override
+    public void openVirtualLTE() throws RemoteException
+    {
+        vlteSocketTask.sendMessage("openvlte##");
+    }
+
+    @Override
     public void closeVirtualLTE() throws RemoteException
     {
-        vlteSocketTask.sendMessage("closevlte");
+        vlteSocketTask.sendMessage("closevlte#");
+    }
+
+    @Override
+    public void runCommand(String command) throws RemoteException {
+        vlteSocketTask.sendMessage("command###"+command);
     }
 
     @Override
@@ -43,11 +54,6 @@ public class VirtualLTEService extends IVirtualLTEService.Stub implements IVlteR
     @Override
     public void unregister(IVirtualLTEListener lteListener) throws RemoteException {
         ltelisteners.unregister(lteListener);
-    }
-
-    public void openVirtualLTE() throws RemoteException
-    {
-        vlteSocketTask.sendMessage("openvlte#");
     }
 
     public void recvVlteMessage(String message){

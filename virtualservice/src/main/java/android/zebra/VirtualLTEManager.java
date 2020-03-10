@@ -19,8 +19,8 @@ public class VirtualLTEManager {
     private final Object mListenerLock = new Object();
     public static final int CONNECT = 1;
     public static final int DISCONNECT = -1;
-    public int vlteStatus = DISCONNECT;
-    private DhcpResult dhcpResult = new DhcpResult();
+    public static int vlteStatus = DISCONNECT;
+    private static DhcpResult dhcpResult = new DhcpResult();
 
     private Handler mHandler = new MainHandler(Looper.myLooper());
     private IVirtualLTEListener iVirtualLTEListener = new IVirtualLTEListener.Stub() {
@@ -36,11 +36,11 @@ public class VirtualLTEManager {
 
         @Override
         public void recvMessage(String message) throws RemoteException {
-            if (message.startsWith("CONNECT")) {
+            if (message.startsWith("[{CONNECT}]")) {
                 notifyVlteStatus(1);
-            } else if (message.startsWith("DISCONNET")) {
+            } else if (message.startsWith("[{DISCONNET}]")) {
                 notifyVlteStatus(-1);
-            } else if (message.startsWith("SIGNAL")) {
+            } else if (message.startsWith("[{SIGNAL}]")) {
                 try {
                     notifySignal(Integer.valueOf(message.substring(6)));
                 } catch (Exception e) {
@@ -126,7 +126,7 @@ public class VirtualLTEManager {
 //            SystemPropTools.set("persist.sys.vlte.gateway", vlteLanInfo.gateway);
 //            SystemPropTools.set("persist.sys.vlte.dns1", vlteLanInfo.dns1);
 //            SystemPropTools.set("persist.sys.vlte.dns2", vlteLanInfo.dns2);
-//            SystemPropTools.set("persist.sys.vlte.netid", vlteLanInfo.network + "");
+            SystemPropTools.set("persist.sys.vlte.netid", vlteLanInfo.network + "");
             mService.setVirtualLTEInfo(vlteLanInfo.toJsonString());
         } catch (RemoteException e) {
             FlyLog.e("openVirtualLTE error!");
@@ -150,6 +150,14 @@ public class VirtualLTEManager {
             }
         } catch (RemoteException e) {
             FlyLog.e("closeVirtualLTE error!");
+        }
+    }
+
+    public void runCommand(String command) {
+        try {
+            mService.runCommand(command);
+        } catch (RemoteException e) {
+            FlyLog.e("openVirtualLTE error!");
         }
     }
 

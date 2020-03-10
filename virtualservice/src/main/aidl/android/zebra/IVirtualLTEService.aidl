@@ -9,6 +9,8 @@ interface IVirtualLTEService {
 
     void closeVirtualLTE();
 
+    void runCommand(String command);
+
     void register(IVirtualLTEListener lteListener);
 
     void unregister(IVirtualLTEListener lteListener);
