@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="horizontal">
 
         <TextView
@@ -66,14 +66,14 @@
             android:id="@+id/ipAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="192.168.2.188"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="horizontal">
 
         <TextView
@@ -86,14 +86,14 @@
             android:id="@+id/ipMask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="255.255.255.0"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="horizontal">
 
         <TextView
@@ -106,14 +106,14 @@
             android:id="@+id/gateway"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="192.168.2.1"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="horizontal">
 
         <TextView
@@ -126,14 +126,14 @@
             android:id="@+id/dns1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="192.168.2.1"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="horizontal">
 
         <TextView
@@ -169,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="NOTE:原则上Framework层network由rilj自动对应Framework层接口建立，此选项仅用于测试。" />
+            android:text="NOTE:此选项仅用于测试。" />
     </LinearLayout>
 
     <LinearLayout
@@ -178,7 +178,7 @@
         android:background="#000" />
 
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
