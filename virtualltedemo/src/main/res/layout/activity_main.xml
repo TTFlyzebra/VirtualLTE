@@ -53,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <TextView
@@ -72,6 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <TextView
@@ -91,6 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <TextView
@@ -110,6 +113,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <TextView
@@ -129,6 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <TextView
@@ -186,5 +191,15 @@
             android:textSize="18sp"
             android:text="虚拟开关" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#000" />
+
+    <TextView
+        android:id="@+id/infotext"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
