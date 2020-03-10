@@ -121,11 +121,11 @@ public class VirtualLTEManager {
         try {
             SystemPropTools.set("persist.sys.vlte.ssid", vlteLanInfo.wifissid);
             SystemPropTools.set("persist.sys.vlte.psk", vlteLanInfo.wifipsk);
-//            SystemPropTools.set("persist.sys.vlte.ip", vlteLanInfo.ipAddress);
-//            SystemPropTools.set("persist.sys.vlte.mask", vlteLanInfo.ipMask);
-//            SystemPropTools.set("persist.sys.vlte.gateway", vlteLanInfo.gateway);
-//            SystemPropTools.set("persist.sys.vlte.dns1", vlteLanInfo.dns1);
-//            SystemPropTools.set("persist.sys.vlte.dns2", vlteLanInfo.dns2);
+            SystemPropTools.set("persist.sys.vlte.ip", vlteLanInfo.ipAddress);
+            SystemPropTools.set("persist.sys.vlte.mask", vlteLanInfo.ipMask);
+            SystemPropTools.set("persist.sys.vlte.gateway", vlteLanInfo.gateway);
+            SystemPropTools.set("persist.sys.vlte.dns1", vlteLanInfo.dns1);
+            SystemPropTools.set("persist.sys.vlte.dns2", vlteLanInfo.dns2);
             SystemPropTools.set("persist.sys.vlte.netid", vlteLanInfo.network + "");
             mService.setVirtualLTEInfo(vlteLanInfo.toJsonString());
         } catch (RemoteException e) {
