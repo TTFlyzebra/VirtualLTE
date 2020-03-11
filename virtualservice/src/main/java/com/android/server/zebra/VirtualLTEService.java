@@ -58,6 +58,17 @@ public class VirtualLTEService extends IVirtualLTEService.Stub implements IVlteR
 
     public void recvVlteMessage(String message){
         FlyLog.d("recv:"+message);
+        final int N = ltelisteners.beginBroadcast();
+        for (int i = 0; i < N; i++) {
+            try {
+                ltelisteners.getBroadcastItem(i).recvMessage(message);
+            } catch (RemoteException e) {
+                FlyLog.e(e.toString());
+            } catch (Exception e) {
+                FlyLog.e(e.toString());
+            }
+        }
+        ltelisteners.finishBroadcast();
     }
 
     private static native void openVLTE_native();
