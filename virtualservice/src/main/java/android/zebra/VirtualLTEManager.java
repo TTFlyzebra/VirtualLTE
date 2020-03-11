@@ -38,7 +38,7 @@ public class VirtualLTEManager {
         public void recvMessage(String message) throws RemoteException {
             if (message.startsWith("[{CONNECT}]")) {
                 notifyVlteStatus(1);
-            } else if (message.startsWith("[{DISCONNET}]")) {
+            } else if (message.startsWith("[{DISCONNECT}]")) {
                 notifyVlteStatus(-1);
             } else if (message.startsWith("[{SIGNAL}]")) {
                 try {
