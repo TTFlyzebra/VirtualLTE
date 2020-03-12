@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class VlteLanInfo {
+public class VlteConfigure {
     public String wifissid = "";
     public String wifipsk = "";
     public String ipAddress = "";
@@ -14,10 +14,9 @@ public class VlteLanInfo {
     public String gateway = "";
     public String dns1 = "";
     public String dns2 = "";
-    public int network = 0;
-    public static VlteLanInfo createByJsonString(String json){
+    public static VlteConfigure createByJsonString(String json){
         if(TextUtils.isEmpty(json)) return null;
-        VlteLanInfo vlteLanInfo = new VlteLanInfo();
+        VlteConfigure vlteLanInfo = new VlteConfigure();
         try {
             JSONObject jsonObject = new JSONObject(json);
             if(jsonObject.has("wifissid")){
@@ -41,10 +40,6 @@ public class VlteLanInfo {
             if(jsonObject.has("dns2")){
                 vlteLanInfo.dns2 = jsonObject.getString("dns2");
             }
-            if(jsonObject.has("network")){
-                vlteLanInfo.network = jsonObject.getInt("network");
-            }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -58,7 +53,6 @@ public class VlteLanInfo {
                 "\"ipMask\":\""+ipMask+"\","+
                 "\"gateway\":\""+gateway+"\","+
                 "\"dns1\":\""+dns1+"\","+
-                "\"dns2\":\""+dns2+"\","+
-                "\"network\":"+network+"}";
+                "\"dns2\":"+dns2+"}";
     }
 }

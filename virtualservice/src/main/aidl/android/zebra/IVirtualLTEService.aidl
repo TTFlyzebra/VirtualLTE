@@ -3,7 +3,7 @@ import android.zebra.IVirtualLTEListener;
 
 interface IVirtualLTEService {
 
-    void setVirtualLTEInfo(String vlteLanInfo);
+    void configureVLTE(String jsonConfigure);
 
     void openVirtualLTE();
 

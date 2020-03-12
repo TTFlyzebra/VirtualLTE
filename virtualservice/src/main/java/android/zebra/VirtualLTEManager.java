@@ -47,6 +47,7 @@ public class VirtualLTEManager {
                     FlyLog.e(e.toString());
                 }
             }
+            Message.obtain(mHandler, NOTIFY_SIGNAL, NOTIFY_RECVMESSAG).sendToTarget();
         }
     };
 
@@ -60,18 +61,6 @@ public class VirtualLTEManager {
             switch (msg.what) {
                 case NOTIFY_VLTESTATUS:
                     vlteStatus = (int) msg.obj;
-                    if (vlteStatus == 1) {
-                        dhcpResult.dns1 = SystemPropTools.get("dhcp.rmnet_data9.dns1", "");
-                        dhcpResult.dns2 = SystemPropTools.get("dhcp.rmnet_data9.dns2", "");
-                        dhcpResult.dns3 = SystemPropTools.get("dhcp.rmnet_data9.dns3", "");
-                        dhcpResult.dns4 = SystemPropTools.get("dhcp.rmnet_data9.dns4", "");
-                        dhcpResult.domain = SystemPropTools.get("dhcp.rmnet_data9.domain", "");
-                        dhcpResult.gateway = SystemPropTools.get("dhcp.rmnet_data9.gateway", "");
-                        dhcpResult.ipaddress = SystemPropTools.get("dhcp.rmnet_data9.ipaddress", "");
-                        dhcpResult.mask = SystemPropTools.get("dhcp.rmnet_data9.mask", "");
-                        dhcpResult.mtu = SystemPropTools.get("dhcp.rmnet_data9.mtu", "");
-
-                    }
                     synchronized (mListenerLock) {
                         for (VirtualLTEListener virtualLTEListener : mVirtualLTEListeners) {
                             virtualLTEListener.notifyVlteStatus((Integer) msg.obj);
@@ -85,6 +74,11 @@ public class VirtualLTEManager {
                         }
                     }
                     break;
+                case NOTIFY_RECVMESSAG:
+                    for (VirtualLTEListener virtualLTEListener : mVirtualLTEListeners) {
+                        virtualLTEListener.recvMessage((String) msg.obj);
+                    }
+                    break;
             }
         }
     }
@@ -93,6 +87,8 @@ public class VirtualLTEManager {
         void notifyVlteStatus(int status);
 
         void notifySignal(int signal);
+
+        void recvMessage(String message);
     }
 
     public void addVirtualLTEListener(VirtualLTEListener lteListener) {
@@ -117,7 +113,7 @@ public class VirtualLTEManager {
         }
     }
 
-    public void setVirtualLTEInfo(VlteLanInfo vlteLanInfo) {
+    public void configureVLTE(VlteConfigure vlteLanInfo) {
         try {
             SystemPropTools.set("persist.sys.vlte.ssid", vlteLanInfo.wifissid);
             SystemPropTools.set("persist.sys.vlte.psk", vlteLanInfo.wifipsk);
@@ -126,8 +122,7 @@ public class VirtualLTEManager {
             SystemPropTools.set("persist.sys.vlte.gateway", vlteLanInfo.gateway);
             SystemPropTools.set("persist.sys.vlte.dns1", vlteLanInfo.dns1);
             SystemPropTools.set("persist.sys.vlte.dns2", vlteLanInfo.dns2);
-            SystemPropTools.set("persist.sys.vlte.netid", vlteLanInfo.network + "");
-            mService.setVirtualLTEInfo(vlteLanInfo.toJsonString());
+            mService.configureVLTE(vlteLanInfo.toJsonString());
         } catch (RemoteException e) {
             FlyLog.e("openVirtualLTE error!");
         }
@@ -166,6 +161,15 @@ public class VirtualLTEManager {
     }
 
     public DhcpResult getDhcpResult() {
+        dhcpResult.dns1 = SystemPropTools.get("dhcp.rmnet_data9.dns1", "");
+        dhcpResult.dns2 = SystemPropTools.get("dhcp.rmnet_data9.dns2", "");
+        dhcpResult.dns3 = SystemPropTools.get("dhcp.rmnet_data9.dns3", "");
+        dhcpResult.dns4 = SystemPropTools.get("dhcp.rmnet_data9.dns4", "");
+        dhcpResult.domain = SystemPropTools.get("dhcp.rmnet_data9.domain", "");
+        dhcpResult.gateway = SystemPropTools.get("dhcp.rmnet_data9.gateway", "");
+        dhcpResult.ipaddress = SystemPropTools.get("dhcp.rmnet_data9.ipaddress", "");
+        dhcpResult.mask = SystemPropTools.get("dhcp.rmnet_data9.mask", "");
+        dhcpResult.mtu = SystemPropTools.get("dhcp.rmnet_data9.mtu", "");
         return dhcpResult;
     }
 }

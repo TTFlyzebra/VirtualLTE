@@ -22,7 +22,7 @@
             android:id="@+id/wifissid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HiWifi_4697BA"/>
+            android:text="tsy"/>
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +41,7 @@
             android:id="@+id/wifipsk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0755667788"/>
+            android:text="r888888r??"/>
     </LinearLayout>
 
     <LinearLayout
@@ -150,30 +150,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="Create Network:" />
-
-        <CheckBox
-            android:id="@+id/network"
-            android:checked="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="NOTE:此选项仅用于测试。" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#000" />
 
@@ -189,10 +165,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="虚拟开关" />
+            android:text="连接网络" />
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#000" />
