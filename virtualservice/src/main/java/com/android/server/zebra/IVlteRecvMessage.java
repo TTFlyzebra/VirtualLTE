@@ -1,8 +1,7 @@
 package com.android.server.zebra;
 
 /**
- * @hide
- * ClassName: IVlteRecvMessage
+ * @hide ClassName: IVlteRecvMessage
  * Description:
  * Author: FlyZebra
  * Email:flycnzebra@gmail.com

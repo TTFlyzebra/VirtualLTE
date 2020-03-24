@@ -3,180 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".NetworkActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:onClick="goNetworkConfigure"
+        android:text="网络设置"
+        tools:ignore="OnClick" />
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:onClick="goSimConfigure"
+        android:text="SIM卡配置"
+        tools:ignore="OnClick" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="SSID：" />
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:onClick="goATCommandTest"
+        android:text="AT命令测试"
+        tools:ignore="OnClick" />
 
-        <EditText
-            android:id="@+id/wifissid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="tsy"/>
-    </LinearLayout>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:onClick="goByteStringTool"
+        android:text="String和Byte[]互转"
+        tools:ignore="OnClick" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="PASSWORD：" />
-
-        <EditText
-            android:id="@+id/wifipsk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="r888888r??"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:visibility="visible"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="IP：" />
-
-        <EditText
-            android:id="@+id/ipAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:visibility="visible"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="MASK：" />
-
-        <EditText
-            android:id="@+id/ipMask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:visibility="visible"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="GATEWAY：" />
-
-        <EditText
-            android:id="@+id/gateway"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:visibility="visible"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="DNS1：" />
-
-        <EditText
-            android:id="@+id/dns1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:visibility="visible"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="DNS2：" />
-
-        <EditText
-            android:id="@+id/dns2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000" />
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Switch
-            android:id="@+id/vlte_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="连接网络" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000" />
-
-    <TextView
-        android:id="@+id/infotext"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </LinearLayout>

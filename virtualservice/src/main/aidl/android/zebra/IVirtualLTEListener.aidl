@@ -2,7 +2,9 @@
 package android.zebra;
 
 // Declare any non-default types here with import statements
-
+/**
+ * @hide
+ */
 interface IVirtualLTEListener {
     /**
      * Demonstrates some basic types that you can use as parameters

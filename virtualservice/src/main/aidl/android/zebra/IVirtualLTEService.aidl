@@ -1,6 +1,9 @@
 package android.zebra;
 import android.zebra.IVirtualLTEListener;
 
+/**
+ * @hide
+ */
 interface IVirtualLTEService {
 
     void configureVLTE(String jsonConfigure);
@@ -10,6 +13,8 @@ interface IVirtualLTEService {
     void closeVirtualLTE();
 
     void runCommand(String command);
+
+    int getVlteStatus();
 
     void register(IVirtualLTEListener lteListener);
 

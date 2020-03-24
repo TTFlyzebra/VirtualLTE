@@ -1,10 +1,10 @@
 package android.zebra;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * @hide
- * ClassName: SystemPropTools
+ * @hide ClassName: SystemPropTools
  * Description:
  * Author: FlyZebra
  * Email:flycnzebra@gmail.com
@@ -59,8 +59,8 @@ public class SystemPropTools {
         }
     }
 
-    public static boolean getBoolen(String net_support_multi,boolean flag) {
-        String str = get(net_support_multi,flag?"true":"fasle");
+    public static boolean getBoolen(String net_support_multi, boolean flag) {
+        String str = get(net_support_multi, flag ? "true" : "fasle");
         return "true".equals(str);
     }
 }

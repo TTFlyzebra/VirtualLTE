@@ -3,7 +3,9 @@ package com.android.server.zebra;
 import android.content.Context;
 import android.net.LocalSocket;
 import android.net.LocalSocketAddress;
+import android.os.Build;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.zebra.FlyLog;
@@ -18,8 +20,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * @hide
- * ClassName: VlteSocketTask
+ * @hide ClassName: VlteSocketTask
  * Description:
  * Author: FlyZebra
  * Email:flycnzebra@gmail.com
@@ -36,6 +37,9 @@ public class VlteSocketTask implements Runnable {
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private AtomicBoolean isRun = new AtomicBoolean(false);
     private List<IVlteRecvMessage> onRecvMessageList = new ArrayList<IVlteRecvMessage>();
+    public static final HandlerThread mSendThread = new HandlerThread("SendSockThread");
+    static {mSendThread.start();}
+    private static final Handler mSendHandler = new Handler(mSendThread.getLooper());
 
     public void register(IVlteRecvMessage onRecvMessage) {
         onRecvMessageList.add(onRecvMessage);
@@ -72,6 +76,7 @@ public class VlteSocketTask implements Runnable {
                 notifyRecvMessage("socket_error");
                 SystemClock.sleep(R_CONNET_TIME);
             }
+            mSendHandler.removeCallbacksAndMessages(null);
         }
         isRun.set(false);
         FlyLog.e("VlteSocketTask stop...");
@@ -89,6 +94,7 @@ public class VlteSocketTask implements Runnable {
                 mOutputStream = socket.getOutputStream();
             }
             notifyRecvMessage("socket_connect");
+            sendMessage("manager###");
             byte[] buffer = new byte[BUFFER_SIZE];
             while (isRun.get()) {
                 int count = inputStream.read(buffer, 0, BUFFER_SIZE);
@@ -101,7 +107,7 @@ public class VlteSocketTask implements Runnable {
                 int start = -1;
                 do {
                     start = tempStr.indexOf("}]");
-                    if (start != tempStr.length() - 2) {
+                    if (start != -1 && start != tempStr.length() - 2) {
                         String retStr = tempStr.substring(0, start + 2);
                         tempStr = tempStr.substring(start + 2);
                         notifyRecvMessage(retStr);
@@ -138,31 +144,35 @@ public class VlteSocketTask implements Runnable {
         }
     }
 
-    public boolean sendMessage(String message) {
+    public void sendMessage(String message) {
         FlyLog.d("send:" + message);
-        final String sendMessage = "[{"+message+"}]";
-        synchronized (mDaemonLock) {
-            if (mOutputStream == null) {
-                FlyLog.e("ratd socket error! mOutputStream = null");
-                return false;
-            } else {
-                try {
-                    mOutputStream.write(sendMessage.getBytes(StandardCharsets.UTF_8));
-                } catch (IOException e) {
-                    FlyLog.d(e.toString());
-                    return false;
+        final String sendMessage = "[{" + message + "}]";
+        mSendHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (mDaemonLock) {
+                    if (mOutputStream == null) {
+                        FlyLog.e("ratd socket error! mOutputStream = null");
+                    } else {
+                        try {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                mOutputStream.write(sendMessage.getBytes(StandardCharsets.UTF_8));
+                            }
+                        } catch (IOException e) {
+                            FlyLog.d(e.toString());
+                        }
+                    }
                 }
             }
-        }
-        return true;
+        });
     }
 
     public void onCreate() {
 
     }
 
-    public void start(){
-        if(isRun.get()){
+    public void start() {
+        if (isRun.get()) {
             FlyLog.e("VlteSocketTask is Running...");
             return;
         }
@@ -172,14 +182,16 @@ public class VlteSocketTask implements Runnable {
     }
 
     public void stop() {
-        if(isRun.get()){
+        if (isRun.get()) {
             isRun.set(false);
         }
         mHandler.removeCallbacksAndMessages(null);
+        mSendHandler.removeCallbacksAndMessages(null);
     }
 
     public void onDestory() {
         isRun.set(false);
         mHandler.removeCallbacksAndMessages(null);
+        mSendHandler.removeCallbacksAndMessages(null);
     }
 }

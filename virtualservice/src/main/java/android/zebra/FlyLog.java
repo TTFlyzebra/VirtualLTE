@@ -3,8 +3,7 @@ package android.zebra;
 import android.util.Log;
 
 /**
- * @hide
- * Created by FlyZebra on 2016/3/24.
+ * @hide Created by FlyZebra on 2016/3/24.
  */
 public class FlyLog {
     public static final String TAG = "ZEBRA-VLTE";

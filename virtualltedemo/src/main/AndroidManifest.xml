@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".NetworkActivity">
+        </activity>
+        <activity android:name=".ByteStringActivity">
+        </activity>
+        <activity android:name=".ATComandActivity">
+        </activity>
+        <activity android:name=".SimConfigureActivity">
+        </activity>
     </application>
 
 </manifest>

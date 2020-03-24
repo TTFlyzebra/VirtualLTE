@@ -17,10 +17,12 @@ public class VirtualLTEManager {
     private static final int NOTIFY_RECVMESSAG = 3;
     private List<VirtualLTEListener> mVirtualLTEListeners = new ArrayList<>();
     private final Object mListenerLock = new Object();
-    public static final int CONNECT = 1;
-    public static final int DISCONNECT = -1;
-    public static int vlteStatus = DISCONNECT;
     private static DhcpResult dhcpResult = new DhcpResult();
+
+    public static final int NARMAL = 0;
+    public static final int CONNECT = 1;
+    public static final int RECONNECT = 2;
+    public static final int DISCONNECT = -1;
 
     private Handler mHandler = new MainHandler(Looper.myLooper());
     private IVirtualLTEListener iVirtualLTEListener = new IVirtualLTEListener.Stub() {
@@ -36,17 +38,6 @@ public class VirtualLTEManager {
 
         @Override
         public void recvMessage(String message) throws RemoteException {
-            if (message.startsWith("[{CONNECT}]")) {
-                notifyVlteStatus(1);
-            } else if (message.startsWith("[{DISCONNECT}]")) {
-                notifyVlteStatus(-1);
-            } else if (message.startsWith("[{SIGNAL}]")) {
-                try {
-                    notifySignal(Integer.valueOf(message.substring(6)));
-                } catch (Exception e) {
-                    FlyLog.e(e.toString());
-                }
-            }
             Message.obtain(mHandler, NOTIFY_SIGNAL, NOTIFY_RECVMESSAG).sendToTarget();
         }
     };
@@ -60,7 +51,6 @@ public class VirtualLTEManager {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case NOTIFY_VLTESTATUS:
-                    vlteStatus = (int) msg.obj;
                     synchronized (mListenerLock) {
                         for (VirtualLTEListener virtualLTEListener : mVirtualLTEListeners) {
                             virtualLTEListener.notifyVlteStatus((Integer) msg.obj);
@@ -130,9 +120,7 @@ public class VirtualLTEManager {
 
     public void openVirtualLTE() {
         try {
-            if (vlteStatus != 1) {
-                mService.openVirtualLTE();
-            }
+            mService.openVirtualLTE();
         } catch (RemoteException e) {
             FlyLog.e("openVirtualLTE error!");
         }
@@ -140,9 +128,7 @@ public class VirtualLTEManager {
 
     public void closeVirtualLTE() {
         try {
-            if (vlteStatus != -1) {
-                mService.closeVirtualLTE();
-            }
+            mService.closeVirtualLTE();
         } catch (RemoteException e) {
             FlyLog.e("closeVirtualLTE error!");
         }
@@ -157,7 +143,12 @@ public class VirtualLTEManager {
     }
 
     public int getVlteStatus() {
-        return vlteStatus;
+        try {
+            return mService.getVlteStatus();
+        } catch (RemoteException e) {
+            FlyLog.e("openVirtualLTE error!");
+            return NARMAL;
+        }
     }
 
     public DhcpResult getDhcpResult() {
